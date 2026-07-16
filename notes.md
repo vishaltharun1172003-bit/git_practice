@@ -102,3 +102,78 @@ Commands:
 - git tag -a v1.0.0 -m "msg" → create annotated
 - git cat-file -t <tag> → check type
 - git cat-file -p <tag> → see contents
+
+Branch Pointers:
+- A branch is just a TEXT FILE containing a commit hash
+- Location: .git/refs/heads/<branch-name>
+- Automatically moves forward with each new commit
+- Creating a branch = creating a tiny text file (almost free)
+- Tags never move, branches always move forward
+
+Key difference:
+- Branch → moves with commits
+- Tag    → permanently fixed
+
+Commands:
+- git branch <name>     → create new branch
+- git branch            → list all branches
+- cat .git/refs/heads/<branch> → see what commit branch points to
+
+Staging Area Internals:
+- Stored in .git/index (binary file)
+- Tracks every staged file with:
+  - File permissions (100644 = regular file)
+  - Blob hash (current staged version)
+  - Stage number (0 = normal, 1/2/3 = merge conflict)
+  - Filename
+
+- git add → creates new blob + updates .git/index
+- git ls-files --stage → see staging area contents
+- Only staged files go into the next commit
+- Unstaged files stay in working directory unchanged
+
+Commits — Snapshots not Differences:
+- Git stores complete snapshot at every commit
+- NOT storing differences between versions
+- BUT smart: reuses unchanged file blobs
+- Only changed files get new blob objects
+- Result: complete history + storage efficient
+
+Proof:
+- New commit with only test.txt changed
+- Only 3 new objects created (commit + tree + blob)
+- notes.md blob reused — no new object created\
+
+commit history 
+our current history:
+git log --oneline
+
+Let's verify the parent chain by inspecting each commit:
+git cat-file -p 3b94a40
+We already saw this — it has parent f2a1f80. Now check that parent:
+git cat-file -p f2a1f80
+
+Now let's see different ways to view commit history:
+# Simple one line
+git log --oneline
+
+# With graph
+git log --oneline --graph
+
+# With graph and all branches
+git log --oneline --graph --all
+
+# See what changed in each commit
+git log --stat
+
+# See full diff of each commit
+git log -p
+
+# See last 2 commits only
+git log --oneline -2
+
+# Search by commit message
+git log --oneline --grep="test"
+
+# To make it case insensitive
+git log --oneline --grep="test" -i
