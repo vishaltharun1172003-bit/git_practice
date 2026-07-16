@@ -79,3 +79,26 @@ SHA-1 Hashing:
 - git hash-object <file> → compute hash
 - git cat-file -p <hash> → read object content
 - git cat-file -t <hash> → check object type
+Tags:
+- Fourth Git object type
+- Permanent label attached to a specific commit
+- Never moves (unlike branches)
+
+Two types:
+1. Lightweight → git tag v1.0.0
+   - Just a pointer to commit
+   - No extra information
+   - type: commit
+
+2. Annotated → git tag -a v1.0.0 -m "message"
+   - Full Git object
+   - Contains author, date, message
+   - type: tag
+   - Recommended for releases
+
+Commands:
+- git tag              → list all tags
+- git tag v1.0.0       → create lightweight
+- git tag -a v1.0.0 -m "msg" → create annotated
+- git cat-file -t <tag> → check type
+- git cat-file -p <tag> → see contents
