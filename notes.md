@@ -35,3 +35,47 @@ Commands:
 
 Key insight: Staging area lets you choose exactly
 what goes into each commit
+
+vishal@Vishal:~/git_practice$ git add notes.md
+vishal@Vishal:~/git_practice$ git status 
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   notes.md
+
+vishal@Vishal:~/git_practice$ git commit -m "Initial commit: add notes.md" 
+[master (root-commit) 7d90ebd] Initial commit: add notes.md
+ 1 file changed, 37 insertions(+)
+ create mode 100644 notes.md
+vishal@Vishal:~/git_practice$ git log --oneline
+7d90ebd (HEAD -> master) Initial commit: add notes.md
+vishal@Vishal:~/git_practice$ git log 
+commit 7d90ebdcbf31a601fe5a6447900003d9dcea1809 (HEAD -> master)
+Author: Raghavendra Vishal <raghvendaravishal@gmail.com>
+Date:   Thu Jul 16 00:44:10 2026 +0800
+
+    Initial commit: add notes.md
+vishal@Vishal:~/git_practice$ find .git/refs -type f
+.git/refs/heads/master
+vishal@Vishal:~/git_practice$ find .git/objects -type f
+.git/objects/9e/092f550a17492abaa9bc19de75a13ee4a41101
+.git/objects/7d/90ebdcbf31a601fe5a6447900003d9dcea1809
+.git/objects/7a/85e6c1bb7ff3b72c46a22a63b5195f0f25aa0c
+vishal@Vishal:~/git_practice$ cat .git/refs/heads/master
+7d90ebdcbf31a601fe5a6447900003d9dcea1809
+vishal@Vishal:~/git_practice$ 
+
+SHA-1 Hashing:
+- Git uses SHA-1 to generate a unique 40 character ID for every object
+- Same input → always same hash
+- Different input → always different hash
+- Cannot reverse the hash to get content back
+- Git uses hash to detect any change in files
+- Storage: first 2 chars = folder, remaining 38 = filename
+- Why: keeps objects folder fast with millions of files
+- git hash-object <file> → compute hash
+- git cat-file -p <hash> → read object content
+- git cat-file -t <hash> → check object type
