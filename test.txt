@@ -4,4 +4,8 @@ New line added
 master change
 feature change
 
+
 master rebase test
+
+feature rebase test
+
