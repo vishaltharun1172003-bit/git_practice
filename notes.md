@@ -176,4 +176,4 @@ git log --oneline -2
 git log --oneline --grep="test"
 
 # To make it case insensitive
-git log --oneline --grep="test" -i
+git log --oneline --grep="test" -iunstaged change
