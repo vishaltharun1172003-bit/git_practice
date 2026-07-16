@@ -10,3 +10,4 @@ master rebase test
 feature rebase test
 
 staged change
+testing git diff
