@@ -173,7 +173,8 @@ git log -p
 git log --oneline -2
 
 # Search by commit message
-git log --oneline --grep="test"
+git log --oneline --grep="test"		
 
 # To make it case insensitive
 git log --oneline --grep="test" -i
+Edited directly on GitHub - simulating teammate
