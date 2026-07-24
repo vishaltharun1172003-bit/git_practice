@@ -178,3 +178,4 @@ git log --oneline --grep="test"
 # To make it case insensitive
 git log --oneline --grep="test" -i
 Edited directly on GitHub - simulating teammate
+second teammate edit
